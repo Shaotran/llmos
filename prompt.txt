@@ -72,68 +72,85 @@ tell application "Mail"
         log "Email sending canceled."
     end if
 
-end tell
+end tell 
 ```
 --- Example 2
-Command: Can you analyze my wine dataset using logistic regression?
-Process: Using apple script look through my Downloads folder for a dataset with the name wine, probably wine.csv or a name similar that contains wine, create a python script to analyze the dataset, show the plot briefly, then make a new powerpoint where the plot is in the powerpoint, add some analysis text under the graph, finally save the powerpoint.
-Code: ```
+Command: Can you analyze my tv marketing dataset using linear regression?
+Process: Using apple script look through my Downloads folder for a dataset with the name tv marketing, probably tvmarketing.csv or a name similar, 
+create a python script to analyze the dataset using linear regression, show the plot briefly, then make a new powerpoint where the plot is in the powerpoint, 
+add the r squared value under the graph, finally save the powerpoint.
+Code: 
+```
 -- Install required Python packages
-do shell script "pip3 install numpy matplotlib scikit-learn python-pptx"
+do shell script "pip3 install pandas numpy matplotlib scikit-learn python-pptx"
 
-set pythonScript to "import matplotlib.pyplot as plt
-from sklearn.decomposition import PCA
-from sklearn.datasets import load_iris
+-- Find tvmarketing.csv in Downloads
+set csvPath to POSIX path of (path to downloads folder) & "tvmarketing.csv"
+
+set pythonScript to "import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
 from pptx import Presentation
 from pptx.util import Inches
+import os
 
-# Load the Iris dataset
-iris = load_iris()
-X = iris.data
-y = iris.target
+# Construct the path to the dataset
+home_dir = os.path.expanduser('~')
+file_path = os.path.join(home_dir, 'Downloads', 'tvmarketing.csv')
 
-# PCA transformation
-pca = PCA(n_components=2)
-X_r = pca.fit_transform(X)
+# Load the dataset
+data = pd.read_csv(file_path)
 
-# Plotting the PCA
-plt.figure()
-colors = ['navy', 'turquoise', 'darkorange']
-lw = 2
-target_names = iris.target_names
+# Prepare the data
+X = data[['TV']].values
+y = data['Sales'].values
 
-for color, i, target_name in zip(colors, [0, 1, 2], target_names):
-    plt.scatter(X_r[y == i, 0], X_r[y == i, 1], color=color, alpha=.8, lw=lw,
-                label=target_name)
-plt.legend(loc='best', shadow=False, scatterpoints=1)
-plt.title('PCA of IRIS dataset')
-plt.savefig('iris_pca.png')
+# Create a linear regression model
+model = LinearRegression()
+model.fit(X, y)
 
+# Make predictions
+predictions = model.predict(X)
+
+# Calculate R-squared value
+r_squared = r2_score(y, predictions)
+
+# Plotting the actual points and the line of best fit
+plt.scatter(X, y, color='blue', label='Actual Data')
+plt.plot(X, predictions, color='red', linewidth=2, label='Line of Best Fit')
+plt.title('TV Marketing vs. Sales')
+plt.xlabel('TV Marketing Budget')
+plt.ylabel('Sales')
+plt.legend()
+plt.savefig(os.path.join(home_dir, 'Desktop', 'THTest', 'linear_regression_plot.png'))
 plt.show(block=False)
-plt.pause(5)  # Pause for 5 seconds before closing the plot
+plt.pause(5)
 plt.close()
 
+# Create a PowerPoint presentation
 prs = Presentation()
-slide_layout = prs.slide_layouts[5]  # Choosing a blank layout for the slide
+slide_layout = prs.slide_layouts[5]  # Choosing a blank layout for a slide
 slide = prs.slides.add_slide(slide_layout)
 
-# Add the PCA plot to the slide
-img_path = 'iris_pca.png'
+# Add the plot to the slide
+img_path = 'linear_regression_plot.png'
 left = Inches(1)
 top = Inches(1)
 pic = slide.shapes.add_picture(img_path, left, top, width=Inches(5.5))
 
-# Add analysis comments
+# Add regression statistics
 txBox = slide.shapes.add_textbox(Inches(0.5), Inches(5), Inches(9), Inches(2))
 tf = txBox.text_frame
-tf.text = 'PCA Analysis Comments:\\n1. The first two principal components capture most of the variance in the data.\\n2. There is clear separation between the species based on these components.'
+tf.text = 'Regression Statistics:\\nR-squared: {:.2f}'.format(r_squared)
 
 # Save the presentation
-prs.save('PCA_Analysis_Presentation.pptx')"
+prs.save('Linear_Regression_Analysis_Presentation.pptx')"
 
 -- Define the path for the folder and the new Python file name
 set folderPath to "Macintosh HD:Users:robertsheng:Desktop:THTest"
-set fileName to "iris_pca.py"
+set fileName to "linear_regression_analysis.py"
 set filePath to folderPath & ":" & fileName
 
 -- Use AppleScript to navigate to the folder and create the file
@@ -152,10 +169,8 @@ close access fileRef
 -- Execute the Python script
 do shell script "cd '/Users/robertsheng/Desktop/THTest' && python3 '" & fileName & "'"
 
-delay 2
-
 -- Define the path for the generated PowerPoint presentation
-set pptxPath to POSIX path of ((path to desktop as text) & "THTest:PCA_Analysis_Presentation.pptx")
+set pptxPath to POSIX path of ((path to desktop as text) & "THTest:Linear_Regression_Analysis_Presentation.pptx")
 
 -- Open the PowerPoint presentation with Microsoft PowerPoint
 tell application "Microsoft PowerPoint"
@@ -163,5 +178,6 @@ tell application "Microsoft PowerPoint"
     activate
 end tell
 ```
+
 --- Actual Request
 Command: 
