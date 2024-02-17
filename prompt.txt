@@ -181,5 +181,7 @@ tell application "Microsoft PowerPoint"
 end tell
 ```
 
+Notes: Whenever a name is used, make sure to search through contacts to find the correct phone number or email in the apple script
+
 --- Actual Request
 Command: 
