@@ -1,30 +1,69 @@
--- Replace with the path to your Word document
-set wordDocumentPath to "Macintosh HD:Users:robertsheng:Desktop:test.docx"
--- Replace with the recipient's email address
-set recipientAddress to "allan.w.zhang@vanderbilt.edu"
--- Replace with the email subject
-set emailSubject to "Test"
--- The content of the Word document will be stored in this variable
-set documentContent to ""
--- Extract text from the Word document
-tell application "Microsoft Word"
-    -- Open the document
-    open wordDocumentPath
-    set theActiveDocument to the active document
-    -- Extract the text
-    set documentContent to content of text object of theActiveDocument
-    -- Close the document without saving
-    close theActiveDocument saving no
+-- Step 1: Find Allan's email address
+log "Starting: Finding Allan's email address"
+tell application "Contacts"
+    set allans to people whose name contains "Allan"
+    if (count of allans) is greater than 0 then
+        set allan to item 1 of allans -- Assuming the first Allan is the correct one
+        set allanEmail to value of first email of allan
+        log "Allan's email found: " & allanEmail
+    else
+        log "Allan not found in contacts."
+        display dialog "Allan not found in contacts."
+        return
+    end if
 end tell
--- Create and send the email
-tell application "Mail"
-    -- Create a new message
-    set theMessage to make new outgoing message with properties {subject:emailSubject, content:documentContent, visible:true}
-    tell theMessage
-        -- Set the recipient
-        make new to recipient at end of to recipients with properties {address:recipientAddress}
+
+-- Step 2: Use Finder to search for the tasklist.docx file in the Documents folder
+log "Searching for tasklist.docx in the Documents folder"
+set tasklistPath to ""
+tell application "Finder"
+    set documentsFolder to path to documents folder
+    set tasklistFiles to (files of entire contents of documentsFolder whose name is "tasklist.docx")
+    if (count of tasklistFiles) > 0 then
+        set tasklistFile to item 1 of tasklistFiles -- Assuming the first found file is the one we want
+        set tasklistPath to tasklistFile as text
+        log "tasklist.docx found at: " & tasklistPath
+    else
+        log "tasklist.docx not found in the Documents folder."
+        display dialog "tasklist.docx not found in the Documents folder."
+        return
+    end if
+end tell
+
+
+-- Step 3: Open the tasklist.docx in Microsoft Word and get its content
+log "Opening tasklist.docx in Word"
+set tasklistContent to ""
+if tasklistPath is not "" then
+    tell application "Microsoft Word"
+        open file tasklistPath
+        set tasklistContent to content of text object of active document
+        log "Extracted content from tasklist.docx"
+        close active document saving no
     end tell
-    -- Send the message
-    -- Uncomment the next line if you want to send the email automatically
-    send theMessage
+end if
+
+-- Step 4: Send an email to Allan with the tasklist content
+log "Preparing to send email to Allan"
+tell application "Mail"
+    set newMessage to make new outgoing message with properties {subject:"Tasklist", content:tasklistContent, visible:true}
+    tell newMessage
+        make new to recipient at end of to recipients with properties {address:allanEmail}
+    end tell
+    -- Uncomment the line below to automatically send the email
+    log "Email prepared for Allan, ready to send."
+    activate
+    display dialog "Do you want to send the email?" buttons {"Cancel", "Send"} default button "Send"
+    set userResponse to the button returned of the result
+    
+    -- Check the user's response
+    if userResponse is "Send" then
+        -- User confirmed, send the email
+        send newMessage
+        log "Email sent to Allan."
+    else
+        -- User canceled, do not send the email
+        log "Email sending canceled."
+    end if
+
 end tell
