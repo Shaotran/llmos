@@ -8,9 +8,10 @@ response2 = client.chat.completions.create(
         {"role": "system", "content": textwrap.dedent("""\
 You are a helpful personal assistant. You should output AppleScript code that will do the task the user asks for.""")},
         {"role": "user", "content": textwrap.dedent("""\
-Instructions: Specific task instructions.
+Instructions: Given a human command, can you write the step by step process to execute this command through applescript, then provide the applescript code.
 ---
-Command: Write an AppleScript that will find Allan's email address in the Contacts app, search for a file named "tasklist.docx" in the Documents folder, open the file in Microsoft Word, extract its content, and send an email to Allan with the tasklist content.
+Command: Email Allan the tasks in my tasklist document.
+Process: Write applescript code to look through my contacts to find Allan's email, search my directory to find a tasklist.docx document, then read the contents of the tasklist document and send it in an email to Allan's email.
 Code: 
 ```
 -- Step 1: Find Allan's email address
@@ -83,7 +84,7 @@ tell application "Mail"
 
 end tell
 ```
----
+------
 Command: User Input Example 2
 Code: ```
 applescript code 2```
