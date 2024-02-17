@@ -1,0 +1,699 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B771BE412B80B54B006470BA /* SwiftWhisper in Frameworks */ = {isa = PBXBuildFile; productRef = B771BE402B80B54B006470BA /* SwiftWhisper */; };
+		B771BE462B80BCFC006470BA /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = B771BE452B80BCFC006470BA /* AudioKit */; };
+		B771BE4B2B80BE2E006470BA /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = B771BE4A2B80BE2E006470BA /* OpenAI */; };
+		B771BE4F2B8135B2006470BA /* helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B771BE4E2B8135B2006470BA /* helpers.swift */; };
+		B771BE512B814282006470BA /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = B771BE502B814282006470BA /* config.plist */; };
+		B78FA5C52B8080740045D01B /* llmosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FA5C42B8080740045D01B /* llmosApp.swift */; };
+		B78FA5C72B8080740045D01B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FA5C62B8080740045D01B /* ContentView.swift */; };
+		B78FA5C92B8080760045D01B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B78FA5C82B8080760045D01B /* Assets.xcassets */; };
+		B78FA5CC2B8080760045D01B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B78FA5CB2B8080760045D01B /* Preview Assets.xcassets */; };
+		B78FA5D72B8080760045D01B /* llmosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FA5D62B8080760045D01B /* llmosTests.swift */; };
+		B78FA5E12B8080760045D01B /* llmosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FA5E02B8080760045D01B /* llmosUITests.swift */; };
+		B78FA5E32B8080760045D01B /* llmosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FA5E22B8080760045D01B /* llmosUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B78FA5D32B8080760045D01B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B78FA5B92B8080740045D01B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B78FA5C02B8080740045D01B;
+			remoteInfo = llmos;
+		};
+		B78FA5DD2B8080760045D01B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B78FA5B92B8080740045D01B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B78FA5C02B8080740045D01B;
+			remoteInfo = llmos;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B771BE3E2B80B162006470BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B771BE4E2B8135B2006470BA /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = helpers.swift; path = llmos/helpers.swift; sourceTree = SOURCE_ROOT; };
+		B771BE502B814282006470BA /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
+		B78FA5C12B8080740045D01B /* llmos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = llmos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B78FA5C42B8080740045D01B /* llmosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = llmosApp.swift; sourceTree = "<group>"; };
+		B78FA5C62B8080740045D01B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B78FA5C82B8080760045D01B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B78FA5CB2B8080760045D01B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B78FA5CD2B8080760045D01B /* llmos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = llmos.entitlements; sourceTree = "<group>"; };
+		B78FA5D22B8080760045D01B /* llmosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = llmosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B78FA5D62B8080760045D01B /* llmosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = llmosTests.swift; sourceTree = "<group>"; };
+		B78FA5DC2B8080760045D01B /* llmosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = llmosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B78FA5E02B8080760045D01B /* llmosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = llmosUITests.swift; sourceTree = "<group>"; };
+		B78FA5E22B8080760045D01B /* llmosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = llmosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B78FA5BE2B8080740045D01B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B771BE462B80BCFC006470BA /* AudioKit in Frameworks */,
+				B771BE4B2B80BE2E006470BA /* OpenAI in Frameworks */,
+				B771BE412B80B54B006470BA /* SwiftWhisper in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B78FA5CF2B8080760045D01B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B78FA5D92B8080760045D01B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B78FA5B82B8080740045D01B = {
+			isa = PBXGroup;
+			children = (
+				B78FA5C32B8080740045D01B /* llmos */,
+				B78FA5D52B8080760045D01B /* llmosTests */,
+				B78FA5DF2B8080760045D01B /* llmosUITests */,
+				B78FA5C22B8080740045D01B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B78FA5C22B8080740045D01B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B78FA5C12B8080740045D01B /* llmos.app */,
+				B78FA5D22B8080760045D01B /* llmosTests.xctest */,
+				B78FA5DC2B8080760045D01B /* llmosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B78FA5C32B8080740045D01B /* llmos */ = {
+			isa = PBXGroup;
+			children = (
+				B771BE3E2B80B162006470BA /* Info.plist */,
+				B78FA5C42B8080740045D01B /* llmosApp.swift */,
+				B78FA5C62B8080740045D01B /* ContentView.swift */,
+				B78FA5C82B8080760045D01B /* Assets.xcassets */,
+				B78FA5CD2B8080760045D01B /* llmos.entitlements */,
+				B78FA5CA2B8080760045D01B /* Preview Content */,
+				B771BE4E2B8135B2006470BA /* helpers.swift */,
+				B771BE502B814282006470BA /* config.plist */,
+			);
+			path = llmos;
+			sourceTree = "<group>";
+		};
+		B78FA5CA2B8080760045D01B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B78FA5CB2B8080760045D01B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B78FA5D52B8080760045D01B /* llmosTests */ = {
+			isa = PBXGroup;
+			children = (
+				B78FA5D62B8080760045D01B /* llmosTests.swift */,
+			);
+			path = llmosTests;
+			sourceTree = "<group>";
+		};
+		B78FA5DF2B8080760045D01B /* llmosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B78FA5E02B8080760045D01B /* llmosUITests.swift */,
+				B78FA5E22B8080760045D01B /* llmosUITestsLaunchTests.swift */,
+			);
+			path = llmosUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B78FA5C02B8080740045D01B /* llmos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B78FA5E62B8080760045D01B /* Build configuration list for PBXNativeTarget "llmos" */;
+			buildPhases = (
+				B78FA5BD2B8080740045D01B /* Sources */,
+				B78FA5BE2B8080740045D01B /* Frameworks */,
+				B78FA5BF2B8080740045D01B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B771BE4D2B80BE3D006470BA /* PBXTargetDependency */,
+				B771BE482B80BD0E006470BA /* PBXTargetDependency */,
+				B771BE432B80B582006470BA /* PBXTargetDependency */,
+			);
+			name = llmos;
+			packageProductDependencies = (
+				B771BE402B80B54B006470BA /* SwiftWhisper */,
+				B771BE452B80BCFC006470BA /* AudioKit */,
+				B771BE4A2B80BE2E006470BA /* OpenAI */,
+			);
+			productName = llmos;
+			productReference = B78FA5C12B8080740045D01B /* llmos.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B78FA5D12B8080760045D01B /* llmosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B78FA5E92B8080760045D01B /* Build configuration list for PBXNativeTarget "llmosTests" */;
+			buildPhases = (
+				B78FA5CE2B8080760045D01B /* Sources */,
+				B78FA5CF2B8080760045D01B /* Frameworks */,
+				B78FA5D02B8080760045D01B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B78FA5D42B8080760045D01B /* PBXTargetDependency */,
+			);
+			name = llmosTests;
+			productName = llmosTests;
+			productReference = B78FA5D22B8080760045D01B /* llmosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B78FA5DB2B8080760045D01B /* llmosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B78FA5EC2B8080760045D01B /* Build configuration list for PBXNativeTarget "llmosUITests" */;
+			buildPhases = (
+				B78FA5D82B8080760045D01B /* Sources */,
+				B78FA5D92B8080760045D01B /* Frameworks */,
+				B78FA5DA2B8080760045D01B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B78FA5DE2B8080760045D01B /* PBXTargetDependency */,
+			);
+			name = llmosUITests;
+			productName = llmosUITests;
+			productReference = B78FA5DC2B8080760045D01B /* llmosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B78FA5B92B8080740045D01B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					B78FA5C02B8080740045D01B = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					B78FA5D12B8080760045D01B = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = B78FA5C02B8080740045D01B;
+					};
+					B78FA5DB2B8080760045D01B = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = B78FA5C02B8080740045D01B;
+					};
+				};
+			};
+			buildConfigurationList = B78FA5BC2B8080740045D01B /* Build configuration list for PBXProject "llmos" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B78FA5B82B8080740045D01B;
+			packageReferences = (
+				B771BE3F2B80B54B006470BA /* XCRemoteSwiftPackageReference "SwiftWhisper" */,
+				B771BE442B80BCFC006470BA /* XCRemoteSwiftPackageReference "AudioKit" */,
+				B771BE492B80BE2E006470BA /* XCRemoteSwiftPackageReference "OpenAI" */,
+			);
+			productRefGroup = B78FA5C22B8080740045D01B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B78FA5C02B8080740045D01B /* llmos */,
+				B78FA5D12B8080760045D01B /* llmosTests */,
+				B78FA5DB2B8080760045D01B /* llmosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B78FA5BF2B8080740045D01B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B78FA5CC2B8080760045D01B /* Preview Assets.xcassets in Resources */,
+				B78FA5C92B8080760045D01B /* Assets.xcassets in Resources */,
+				B771BE512B814282006470BA /* config.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B78FA5D02B8080760045D01B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B78FA5DA2B8080760045D01B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B78FA5BD2B8080740045D01B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B78FA5C72B8080740045D01B /* ContentView.swift in Sources */,
+				B78FA5C52B8080740045D01B /* llmosApp.swift in Sources */,
+				B771BE4F2B8135B2006470BA /* helpers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B78FA5CE2B8080760045D01B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B78FA5D72B8080760045D01B /* llmosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B78FA5D82B8080760045D01B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B78FA5E32B8080760045D01B /* llmosUITestsLaunchTests.swift in Sources */,
+				B78FA5E12B8080760045D01B /* llmosUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B771BE432B80B582006470BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = B771BE422B80B582006470BA /* SwiftWhisper */;
+		};
+		B771BE482B80BD0E006470BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = B771BE472B80BD0E006470BA /* AudioKit */;
+		};
+		B771BE4D2B80BE3D006470BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = B771BE4C2B80BE3D006470BA /* OpenAI */;
+		};
+		B78FA5D42B8080760045D01B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B78FA5C02B8080740045D01B /* llmos */;
+			targetProxy = B78FA5D32B8080760045D01B /* PBXContainerItemProxy */;
+		};
+		B78FA5DE2B8080760045D01B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B78FA5C02B8080740045D01B /* llmos */;
+			targetProxy = B78FA5DD2B8080760045D01B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B78FA5E42B8080760045D01B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B78FA5E52B8080760045D01B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		B78FA5E72B8080760045D01B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = llmos/llmos.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"llmos/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = U6Y4YRPBPE;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = llmos/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need microphone access for recording";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanshaotran.llmos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B78FA5E82B8080760045D01B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = llmos/llmos.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"llmos/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = U6Y4YRPBPE;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = llmos/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need microphone access for recording";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanshaotran.llmos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		B78FA5EA2B8080760045D01B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M67A9933SW;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanshaotran.llmosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/llmos.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/llmos";
+			};
+			name = Debug;
+		};
+		B78FA5EB2B8080760045D01B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M67A9933SW;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanshaotran.llmosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/llmos.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/llmos";
+			};
+			name = Release;
+		};
+		B78FA5ED2B8080760045D01B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M67A9933SW;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanshaotran.llmosUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = llmos;
+			};
+			name = Debug;
+		};
+		B78FA5EE2B8080760045D01B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M67A9933SW;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanshaotran.llmosUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = llmos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B78FA5BC2B8080740045D01B /* Build configuration list for PBXProject "llmos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B78FA5E42B8080760045D01B /* Debug */,
+				B78FA5E52B8080760045D01B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B78FA5E62B8080760045D01B /* Build configuration list for PBXNativeTarget "llmos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B78FA5E72B8080760045D01B /* Debug */,
+				B78FA5E82B8080760045D01B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B78FA5E92B8080760045D01B /* Build configuration list for PBXNativeTarget "llmosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B78FA5EA2B8080760045D01B /* Debug */,
+				B78FA5EB2B8080760045D01B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B78FA5EC2B8080760045D01B /* Build configuration list for PBXNativeTarget "llmosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B78FA5ED2B8080760045D01B /* Debug */,
+				B78FA5EE2B8080760045D01B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B771BE3F2B80B54B006470BA /* XCRemoteSwiftPackageReference "SwiftWhisper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exPHAT/SwiftWhisper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		B771BE442B80BCFC006470BA /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.3;
+			};
+		};
+		B771BE492B80BE2E006470BA /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B771BE402B80B54B006470BA /* SwiftWhisper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B771BE3F2B80B54B006470BA /* XCRemoteSwiftPackageReference "SwiftWhisper" */;
+			productName = SwiftWhisper;
+		};
+		B771BE422B80B582006470BA /* SwiftWhisper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B771BE3F2B80B54B006470BA /* XCRemoteSwiftPackageReference "SwiftWhisper" */;
+			productName = SwiftWhisper;
+		};
+		B771BE452B80BCFC006470BA /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B771BE442B80BCFC006470BA /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+		B771BE472B80BD0E006470BA /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B771BE442B80BCFC006470BA /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+		B771BE4A2B80BE2E006470BA /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B771BE492B80BE2E006470BA /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+		B771BE4C2B80BE3D006470BA /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B771BE492B80BE2E006470BA /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B78FA5B92B8080740045D01B /* Project object */;
+}
