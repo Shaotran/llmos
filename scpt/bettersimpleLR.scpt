@@ -1,9 +1,24 @@
 -- Install required Python packages
 do shell script "pip3 install pandas numpy matplotlib scikit-learn python-pptx"
 
--- Find tvmarketing.csv in Downloads
-set csvPath to POSIX path of (path to downloads folder) & "tvmarketing.csv"
+-- Search for tvmarketing.csv in the Documents folder
+log "Searching for tvmarketing.csv in the Documents folder"
+set csvPath to ""
+tell application "Finder"
+    set documentsFolder to path to documents folder as alias
+    set csvFiles to (files of documentsFolder whose name is "tvmarketing.csv")
+    if (count of csvFiles) > 0 then
+        set csvFile to item 1 of csvFiles -- Assuming the first found file is the one we want
+        set csvPath to POSIX path of (csvFile as text)
+        log "tvmarketing.csv found at: " & csvPath
+    else
+        log "tvmarketing.csv not found in the Documents folder."
+        display dialog "tvmarketing.csv not found in the Documents folder."
+        return
+    end if
+end tell
 
+-- Set the Python script, incorporating the found csvPath
 set pythonScript to "import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,12 +28,8 @@ from pptx import Presentation
 from pptx.util import Inches
 import os
 
-# Construct the path to the dataset
-home_dir = os.path.expanduser('~')
-file_path = os.path.join(home_dir, 'Downloads', 'tvmarketing.csv')
-
 # Load the dataset
-data = pd.read_csv(file_path)
+data = pd.read_csv('" & csvPath & "')
 
 # Prepare the data
 X = data[['TV']].values
@@ -41,7 +52,7 @@ plt.title('TV Marketing vs. Sales')
 plt.xlabel('TV Marketing Budget')
 plt.ylabel('Sales')
 plt.legend()
-plt.savefig(os.path.join(home_dir, 'Desktop', 'THTest', 'linear_regression_plot.png'))
+plt.savefig('linear_regression_plot.png')
 plt.show(block=False)
 plt.pause(5)
 plt.close()
@@ -66,32 +77,22 @@ tf.text = 'Regression Statistics:\\nR-squared: {:.2f}'.format(r_squared)
 prs.save('Linear_Regression_Analysis_Presentation.pptx')"
 
 -- Define the path for the folder and the new Python file name
-set folderPath to "Macintosh HD:Users:robertsheng:Desktop:THTest"
+set folderPath to (path to documents folder) as text
 set fileName to "linear_regression_analysis.py"
-set filePath to folderPath & ":" & fileName
-
--- Use AppleScript to navigate to the folder and create the file
-tell application "Finder"
-    set targetFolder to folder folderPath
-    if not (exists file fileName of targetFolder) then
-        make new file at targetFolder with properties {name:fileName}
-    end if
-end tell
+set filePath to folderPath & fileName
 
 -- Write the Python script to the file
-set fileRef to open for access file filePath with write permission
+set fileRef to open for access filePath with write permission
 write pythonScript to fileRef
 close access fileRef
 
--- Execute the Python script
-do shell script "cd '/Users/robertsheng/Desktop/THTest' && python3 '" & fileName & "'"
+-- Execute the Python script using the folderPath variable
+set posixFolderPath to POSIX path of folderPath
+do shell script "cd '" & posixFolderPath & "' && python3 ./" & fileName
 
--- Define the path for the generated PowerPoint presentation
-set pptxPath to POSIX path of ((path to desktop as text) & "THTest:Linear_Regression_Analysis_Presentation.pptx")
-
--- Open the PowerPoint presentation with Microsoft PowerPoint
+-- Open the generated PowerPoint presentation with Microsoft PowerPoint
+set pptxPath to posixFolderPath & "Linear_Regression_Analysis_Presentation.pptx"
 tell application "Microsoft PowerPoint"
     open pptxPath
     activate
 end tell
-
