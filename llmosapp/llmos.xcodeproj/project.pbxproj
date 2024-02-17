@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B71130272B8169B2005311C5 /* prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71130262B8169B2005311C5 /* prompt.swift */; };
 		B771BE412B80B54B006470BA /* SwiftWhisper in Frameworks */ = {isa = PBXBuildFile; productRef = B771BE402B80B54B006470BA /* SwiftWhisper */; };
 		B771BE462B80BCFC006470BA /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = B771BE452B80BCFC006470BA /* AudioKit */; };
 		B771BE4B2B80BE2E006470BA /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = B771BE4A2B80BE2E006470BA /* OpenAI */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B71130262B8169B2005311C5 /* prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = prompt.swift; sourceTree = "<group>"; };
+		B71130292B81848F005311C5 /* llmos.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = llmos.entitlements; sourceTree = "<group>"; };
 		B771BE3E2B80B162006470BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B771BE4E2B8135B2006470BA /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = helpers.swift; path = llmos/helpers.swift; sourceTree = SOURCE_ROOT; };
 		B771BE502B814282006470BA /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
@@ -47,7 +50,6 @@
 		B78FA5C62B8080740045D01B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B78FA5C82B8080760045D01B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B78FA5CB2B8080760045D01B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B78FA5CD2B8080760045D01B /* llmos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = llmos.entitlements; sourceTree = "<group>"; };
 		B78FA5D22B8080760045D01B /* llmosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = llmosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B78FA5D62B8080760045D01B /* llmosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = llmosTests.swift; sourceTree = "<group>"; };
 		B78FA5DC2B8080760045D01B /* llmosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = llmosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,10 +112,11 @@
 				B78FA5C42B8080740045D01B /* llmosApp.swift */,
 				B78FA5C62B8080740045D01B /* ContentView.swift */,
 				B78FA5C82B8080760045D01B /* Assets.xcassets */,
-				B78FA5CD2B8080760045D01B /* llmos.entitlements */,
+				B71130292B81848F005311C5 /* llmos.entitlements */,
 				B78FA5CA2B8080760045D01B /* Preview Content */,
 				B771BE4E2B8135B2006470BA /* helpers.swift */,
 				B771BE502B814282006470BA /* config.plist */,
+				B71130262B8169B2005311C5 /* prompt.swift */,
 			);
 			path = llmos;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B78FA5C72B8080740045D01B /* ContentView.swift in Sources */,
+				B71130272B8169B2005311C5 /* prompt.swift in Sources */,
 				B78FA5C52B8080740045D01B /* llmosApp.swift in Sources */,
 				B771BE4F2B8135B2006470BA /* helpers.swift in Sources */,
 			);
@@ -474,6 +478,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = llmos/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "Need app access to execute command";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need microphone access for recording";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -507,6 +512,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = llmos/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "Need app access to execute command";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need microphone access for recording";
 				LD_RUNPATH_SEARCH_PATHS = (
