@@ -1,0 +1,167 @@
+Instructions: Given a human command, can you write the step by step process to execute this command through applescript, then provide the applescript code.
+--- Example 1
+Command: Email Allan the tasks in my tasklist document.
+Process: Write applescript code to look through my contacts to find Allan's email, search my Documents directory to find a tasklist.docx document, then read the contents of the tasklist document and send it in an email to Allan's email.
+Code: 
+```
+-- Step 1: Find Allan's email address
+log "Starting: Finding Allan's email address"
+tell application "Contacts"
+    set allans to people whose name contains "Allan"
+    if (count of allans) is greater than 0 then
+        set allan to item 1 of allans -- Assuming the first Allan is the correct one
+        set allanEmail to value of first email of allan
+        log "Allan's email found: " & allanEmail
+    else
+        log "Allan not found in contacts."
+        display dialog "Allan not found in contacts."
+        return
+    end if
+end tell
+
+-- Step 2: Use Finder to search for the tasklist.docx file in the Documents folder
+log "Searching for tasklist.docx in the Documents folder"
+set tasklistPath to ""
+tell application "Finder"
+    set documentsFolder to path to documents folder
+    set tasklistFiles to (files of entire contents of documentsFolder whose name is "tasklist.docx")
+    if (count of tasklistFiles) > 0 then
+        set tasklistFile to item 1 of tasklistFiles -- Assuming the first found file is the one we want
+        set tasklistPath to tasklistFile as text
+        log "tasklist.docx found at: " & tasklistPath
+    else
+        log "tasklist.docx not found in the Documents folder."
+        display dialog "tasklist.docx not found in the Documents folder."
+        return
+    end if
+end tell
+
+
+-- Step 3: Open the tasklist.docx in Microsoft Word and get its content
+log "Opening tasklist.docx in Word"
+set tasklistContent to ""
+if tasklistPath is not "" then
+    tell application "Microsoft Word"
+        open file tasklistPath
+        set tasklistContent to content of text object of active document
+        log "Extracted content from tasklist.docx"
+        close active document saving no
+    end tell
+end if
+
+-- Step 4: Send an email to Allan with the tasklist content
+log "Preparing to send email to Allan"
+tell application "Mail"
+    set newMessage to make new outgoing message with properties {subject:"Tasklist", content:tasklistContent, visible:true}
+    tell newMessage
+        make new to recipient at end of to recipients with properties {address:allanEmail}
+    end tell
+    -- Uncomment the line below to automatically send the email
+    log "Email prepared for Allan, ready to send."
+    activate
+    display dialog "Do you want to send the email?" buttons {"Cancel", "Send"} default button "Send"
+    set userResponse to the button returned of the result
+    
+    -- Check the user's response
+    if userResponse is "Send" then
+        -- User confirmed, send the email
+        send newMessage
+        log "Email sent to Allan."
+    else
+        -- User canceled, do not send the email
+        log "Email sending canceled."
+    end if
+
+end tell
+```
+--- Example 2
+Command: Can you analyze my wine dataset using logistic regression?
+Process: Using apple script look through my Downloads folder for a dataset with the name wine, probably wine.csv or a name similar that contains wine, create a python script to analyze the dataset, show the plot briefly, then make a new powerpoint where the plot is in the powerpoint, add some analysis text under the graph, finally save the powerpoint.
+Code: ```
+-- Install required Python packages
+do shell script "pip3 install numpy matplotlib scikit-learn python-pptx"
+
+set pythonScript to "import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from sklearn.datasets import load_iris
+from pptx import Presentation
+from pptx.util import Inches
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# PCA transformation
+pca = PCA(n_components=2)
+X_r = pca.fit_transform(X)
+
+# Plotting the PCA
+plt.figure()
+colors = ['navy', 'turquoise', 'darkorange']
+lw = 2
+target_names = iris.target_names
+
+for color, i, target_name in zip(colors, [0, 1, 2], target_names):
+    plt.scatter(X_r[y == i, 0], X_r[y == i, 1], color=color, alpha=.8, lw=lw,
+                label=target_name)
+plt.legend(loc='best', shadow=False, scatterpoints=1)
+plt.title('PCA of IRIS dataset')
+plt.savefig('iris_pca.png')
+
+plt.show(block=False)
+plt.pause(5)  # Pause for 5 seconds before closing the plot
+plt.close()
+
+prs = Presentation()
+slide_layout = prs.slide_layouts[5]  # Choosing a blank layout for the slide
+slide = prs.slides.add_slide(slide_layout)
+
+# Add the PCA plot to the slide
+img_path = 'iris_pca.png'
+left = Inches(1)
+top = Inches(1)
+pic = slide.shapes.add_picture(img_path, left, top, width=Inches(5.5))
+
+# Add analysis comments
+txBox = slide.shapes.add_textbox(Inches(0.5), Inches(5), Inches(9), Inches(2))
+tf = txBox.text_frame
+tf.text = 'PCA Analysis Comments:\\n1. The first two principal components capture most of the variance in the data.\\n2. There is clear separation between the species based on these components.'
+
+# Save the presentation
+prs.save('PCA_Analysis_Presentation.pptx')"
+
+-- Define the path for the folder and the new Python file name
+set folderPath to "Macintosh HD:Users:robertsheng:Desktop:THTest"
+set fileName to "iris_pca.py"
+set filePath to folderPath & ":" & fileName
+
+-- Use AppleScript to navigate to the folder and create the file
+tell application "Finder"
+    set targetFolder to folder folderPath
+    if not (exists file fileName of targetFolder) then
+        make new file at targetFolder with properties {name:fileName}
+    end if
+end tell
+
+-- Write the Python script to the file
+set fileRef to open for access file filePath with write permission
+write pythonScript to fileRef
+close access fileRef
+
+-- Execute the Python script
+do shell script "cd '/Users/robertsheng/Desktop/THTest' && python3 '" & fileName & "'"
+
+delay 2
+
+-- Define the path for the generated PowerPoint presentation
+set pptxPath to POSIX path of ((path to desktop as text) & "THTest:PCA_Analysis_Presentation.pptx")
+
+-- Open the PowerPoint presentation with Microsoft PowerPoint
+tell application "Microsoft PowerPoint"
+    open pptxPath
+    activate
+end tell
+```
+--- Actual Request
+Command: 
