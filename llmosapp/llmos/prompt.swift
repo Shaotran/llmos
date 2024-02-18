@@ -9,82 +9,21 @@ import Foundation
 
 struct Prompt {
     static let promptStr = """
-    Instructions: Given a human command, can you write the step by step process to execute this command through applescript, then provide the applescript code. Rules:\n- Whenever a name is used, make sure to search through contacts to find the correct phone number or email in the apple script.\n- When opening new applications, set a delay for 3 seconds.\n- Never use curly quotes, and always use straight quotes.
+    Instructions: Given a human command, can you write the step by step process to execute this command through applescript, then provide the applescript code.
     ###
-    Command: Email Allan the tasks in my tasklist document.
-    Process: Write applescript code to look through my contacts to find Allan's email, search my Documents directory to find a tasklist.docx document, then read the contents of the tasklist document and send it in an email to Allan's email.
+    Command: Email Nandika "Hello"
+    Process: Write applescript code to look through my contacts to find Nandika's number and email hello to this number
     Code:
     ```
-    -- Step 1: Find Allan's email address
-    log "Starting: Finding Allan's email address"
-    tell application "Contacts"
-        set allans to people whose name contains "Allan"
-        if (count of allans) is greater than 0 then
-            set allan to item 1 of allans -- Assuming the first Allan is the correct one
-            set allanEmail to value of first email of allan
-            log "Allan's email found: " & allanEmail
-        else
-            log "Allan not found in contacts."
-            display dialog "Allan not found in contacts."
-            return
-        end if
+    -- Step 1: Find Nandika's phone number
+    tell application “Contacts”
+        set thePerson to first person where the name contains “Nandika”
+        set theNumber to value of first phone of thePerson
     end tell
-
-    -- Step 2: Use Finder to search for the tasklist.docx file in the Documents folder
-    log "Searching for tasklist.docx in the Documents folder"
-    set tasklistPath to ""
-    tell application "Finder"
-        set documentsFolder to path to documents folder
-        set tasklistFiles to (files of entire contents of documentsFolder whose name is "tasklist.docx")
-        if (count of tasklistFiles) > 0 then
-            set tasklistFile to item 1 of tasklistFiles -- Assuming the first found file is the one we want
-            set tasklistPath to tasklistFile as text
-            log "tasklist.docx found at: " & tasklistPath
-        else
-            log "tasklist.docx not found in the Documents folder."
-            display dialog "tasklist.docx not found in the Documents folder."
-            return
-        end if
+    -- Step 2: Sent a hello to Nandika's phone number
+    tell application “Messages”
+        send “hello” to buddy theNumber of service 1
     end tell
-
-
-    -- Step 3: Open the tasklist.docx in Microsoft Word and get its content
-    log "Opening tasklist.docx in Word"
-    set tasklistContent to ""
-    if tasklistPath is not "" then
-        tell application "Microsoft Word"
-            open file tasklistPath
-            set tasklistContent to content of text object of active document
-            log "Extracted content from tasklist.docx"
-            close active document saving no
-        end tell
-    end if
-
-    -- Step 4: Send an email to Allan with the tasklist content
-    log "Preparing to send email to Allan"
-    tell application "Mail"
-        set newMessage to make new outgoing message with properties {subject:"Tasklist", content:tasklistContent, visible:true}
-        tell newMessage
-            make new to recipient at end of to recipients with properties {address:allanEmail}
-        end tell
-        -- Uncomment the line below to automatically send the email
-        log "Email prepared for Allan, ready to send."
-        activate
-        display dialog "Do you want to send the email?" buttons {"Cancel", "Send"} default button "Send"
-        set userResponse to the button returned of the result
-        
-        -- Check the user's response
-        if userResponse is "Send" then
-            -- User confirmed, send the email
-            send newMessage
-            log "Email sent to Allan."
-        else
-            -- User canceled, do not send the email
-            log "Email sending canceled."
-        end if
-
-    end tell
-    ```
     ###
     Command: Can you analyze my tv marketing dataset using linear regression?
     Process: Using apple script look through my Documents folder for a dataset with the name tv marketing, probably tvmarketing.csv or a name similar, then in the documents folder,
@@ -94,24 +33,19 @@ struct Prompt {
     ```
     -- Install required Python packages
     do shell script "pip3 install pandas numpy matplotlib scikit-learn python-pptx"
-
     -- Search for tvmarketing.csv in the Documents folder
-    log "Searching for tvmarketing.csv in the Documents folder"
     set csvPath to ""
     tell application "Finder"
         set documentsFolder to path to documents folder as alias
         set csvFiles to (files of documentsFolder whose name is "tvmarketing.csv")
         if (count of csvFiles) > 0 then
-            set csvFile to item 1 of csvFiles -- Assuming the first found file is the one we want
+            set csvFile to item 1 of csvFiles
             set csvPath to POSIX path of (csvFile as text)
-            log "tvmarketing.csv found at: " & csvPath
         else
-            log "tvmarketing.csv not found in the Documents folder."
             display dialog "tvmarketing.csv not found in the Documents folder."
             return
         end if
     end tell
-
     -- Set the Python script, incorporating the found csvPath
     set pythonScript to "import pandas as pd
     import numpy as np
@@ -121,25 +55,13 @@ struct Prompt {
     from pptx import Presentation
     from pptx.util import Inches
     import os
-
-    # Load the dataset
     data = pd.read_csv('" & csvPath & "')
-
-    # Prepare the data
     X = data[['TV']].values
     y = data['Sales'].values
-
-    # Create a linear regression model
     model = LinearRegression()
     model.fit(X, y)
-
-    # Make predictions
     predictions = model.predict(X)
-
-    # Calculate R-squared value
     r_squared = r2_score(y, predictions)
-
-    # Plotting the actual points and the line of best fit
     plt.scatter(X, y, color='blue', label='Actual Data')
     plt.plot(X, predictions, color='red', linewidth=2, label='Line of Best Fit')
     plt.title('TV Marketing vs. Sales')
@@ -150,40 +72,31 @@ struct Prompt {
     plt.show(block=False)
     plt.pause(5)
     plt.close()
-
     # Create a PowerPoint presentation
     prs = Presentation()
-    slide_layout = prs.slide_layouts[5]  # Choosing a blank layout for a slide
+    slide_layout = prs.slide_layouts[5]
     slide = prs.slides.add_slide(slide_layout)
-
     # Add the plot to the slide
     img_path = 'linear_regression_plot.png'
     left = Inches(1)
     top = Inches(1)
     pic = slide.shapes.add_picture(img_path, left, top, width=Inches(5.5))
-
     # Add regression statistics
     txBox = slide.shapes.add_textbox(Inches(0.5), Inches(5), Inches(9), Inches(2))
     tf = txBox.text_frame
     tf.text = 'Regression Statistics:\\nR-squared: {:.2f}'.format(r_squared)
-
-    # Save the presentation
     prs.save('Linear_Regression_Analysis_Presentation.pptx')"
-
     -- Define the path for the folder and the new Python file name
     set folderPath to (path to documents folder) as text
     set fileName to "linear_regression_analysis.py"
     set filePath to folderPath & fileName
-
     -- Write the Python script to the file
     set fileRef to open for access filePath with write permission
     write pythonScript to fileRef
     close access fileRef
-
     -- Execute the Python script using the folderPath variable
     set posixFolderPath to POSIX path of folderPath
     do shell script "cd '" & posixFolderPath & "' && python3 ./" & fileName
-
     -- Open the generated PowerPoint presentation with Microsoft PowerPoint
     set pptxPath to posixFolderPath & "Linear_Regression_Analysis_Presentation.pptx"
     tell application "Microsoft PowerPoint"
@@ -192,6 +105,58 @@ struct Prompt {
     end tell
     ```
     ###
+    Command: Send Aarush the tv marketing dataset on Slack
+    Process: Using applscript first open slack, open a direct message with Aarush, upload and send tvmarketing.csv to him.
+    Code:
+    '''
+    -- Step 1: Launch Slack
+    tell application "Slack"
+        activate
+    end tell
+
+    delay 5 -- Wait for Slack to activate
+
+    -- Step 2: Navigate to the TreeHacks 2024 workspace
+    -- This step assumes that you can switch to the desired workspace with a keyboard shortcut or that it's already the active workspace.
+
+    -- Step 3: Open a direct message with Aarush Aitha
+    -- Use the Slack shortcut for opening a new message (Cmd + K on Mac) and type the name.
+    tell application "System Events"
+        keystroke "k" using {command down}
+        delay 1 -- Wait for the dialog to open
+        keystroke "Aarush Aitha" -- Adjust the name as it appears in Slack
+        delay 1 -- Wait for Slack to find the user
+        keystroke return -- Select the user
+        delay 1 -- Wait for the chat window to open
+    end tell
+
+    -- Step 4: Upload and send the tvmarketing.csv file
+    tell application "System Events"
+        keystroke "u" using {command down} -- Open the file upload dialog
+        delay 2 -- Wait for the file dialog to open
+
+        -- Navigate to the Documents folder using Go to Folder command (Shift + Cmd + G)
+        keystroke "g" using {shift down, command down}
+        delay 1 -- Wait for the Go to Folder dialog to open
+
+        -- Type the path to the Documents folder
+        keystroke "~/Documents"
+        delay 1 -- Allow time for typing
+        keystroke return -- Go to the Documents folder
+        delay 2 -- Wait for navigation
+
+        -- Now that we're in the Documents folder, type the name of the file
+        keystroke "tvmarketing.csv"
+        delay 1 -- Allow time for typing
+        keystroke return -- Select the file and open it (which will attach it in Slack)
+        delay 2 -- Wait for Slack to process the file upload
+
+        -- If needed, add additional steps here to confirm the file upload in Slack
+        keystroke return
+    end tell
+    '''
+    Notes: Whenever a name is used, make sure to search through contacts to find the correct phone number or email in the apple script.
+    When opening new applications delay at least 3 seconds. Only give me the apple script code for the actual request.
     Command:
     """
 }
