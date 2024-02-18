@@ -19,9 +19,27 @@ tell application "System Events"
     delay 1 -- Wait for the chat window to open
 end tell
 
--- Step 4: Type and send the message "what's up!"
+-- Step 4: Upload and send the tvmarketing.csv file
 tell application "System Events"
-    keystroke "what's up!"
+    keystroke "u" using {command down} -- Open the file upload dialog
+    delay 2 -- Wait for the file dialog to open
+
+    -- Navigate to the Documents folder using Go to Folder command (Shift + Cmd + G)
+    keystroke "g" using {shift down, command down}
+    delay 1 -- Wait for the Go to Folder dialog to open
+
+    -- Type the path to the Documents folder
+    keystroke "~/Documents"
     delay 1 -- Allow time for typing
-    keystroke return -- Send the message
+    keystroke return -- Go to the Documents folder
+    delay 2 -- Wait for navigation
+
+    -- Now that we're in the Documents folder, type the name of the file
+    keystroke "tvmarketing.csv"
+    delay 1 -- Allow time for typing
+    keystroke return -- Select the file and open it (which will attach it in Slack)
+    delay 2 -- Wait for Slack to process the file upload
+
+    -- If needed, add additional steps here to confirm the file upload in Slack
+    keystroke return
 end tell
