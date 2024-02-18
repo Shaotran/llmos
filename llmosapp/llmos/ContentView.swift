@@ -4,7 +4,7 @@ import SwiftWhisper
 import AudioKit
 import OpenAI
 
-enum TranscriptionState {
+enum TranscriptionState: Equatable {
     case waiting, running, finished(String)
 }
 
@@ -29,6 +29,9 @@ struct ContentView: View {
     @State private var outputFileURL: URL?
     @State private var animate = false
     @State var isRotating = false
+    @State private var shouldSpin = false
+    
+    @State private var transcribedText: String = ""
     
     @State private var status = TranscriptionState.waiting
     
@@ -83,6 +86,8 @@ struct ContentView: View {
             .blendMode(isRotating ? .hardLight : .difference )
             .scaleEffect(isRecording ? 1.1 : 1.0) // Adjust scale effect based on recording state
             .animation(isRecording ? Animation.easeInOut(duration: 1).repeatForever(autoreverses: true) : .default, value: isRecording) // Apply pulsing animation only when recording
+            .rotationEffect(.degrees(shouldSpin ? 360 : 0))
+            .animation(shouldSpin ? Animation.linear(duration: 2).repeatForever(autoreverses: false) : .default, value: shouldSpin)
             
             Image("highlight")
                 .rotationEffect(.degrees(isRotating ? 360 : 250))
@@ -93,6 +98,23 @@ struct ContentView: View {
                         isRotating.toggle()
                     }
                 }
+            
+            VStack {
+                Spacer() // Pushes everything to the top
+                
+                // Conditionally display the transcribed text
+                if case .finished(let text) = status {
+                    Text(text)
+                        .font(.system(size: 24)) // Make the text bigger
+                        .padding()
+                        .background(Color.black.opacity(0.7)) // Siri-like background: black with some transparency
+                        .foregroundColor(.white) // Text color set to white for contrast
+                        .cornerRadius(10) // Rounded corners
+                        .transition(.slide) // Add a nice transition effect
+                        .animation(.easeInOut, value: status) // Animate the text appearance
+                }
+            }
+
         }.scaleEffect(0.6)
         .onTapGesture {
             if isRecording {
@@ -171,15 +193,27 @@ struct ContentView: View {
                 print(command)
                 
                 // DISPLAY THE TEXT COMMAND UNDER THE PULSING BUBBLE IN CONTENTVIEW
+                DispatchQueue.main.async {
+                    self.status = .finished(command)
+                    shouldSpin = true
+                }
                 
                 let code = try await helpers.texttocode(command: command)
                 print("Last thing:")
                 print(code)
                 
                 try await helpers.executeAppleScript(code: code)
+                
+                DispatchQueue.main.async {
+                    self.shouldSpin = false
+                }
             } catch {
                 // Handle any errors that occurred during conversion or processing
                 print("An error occurred: \(error)")
+                
+                DispatchQueue.main.async {
+                    self.shouldSpin = false
+                }
             }
         }
     

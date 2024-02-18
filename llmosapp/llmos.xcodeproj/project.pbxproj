@@ -483,6 +483,7 @@
 				INFOPLIST_FILE = llmos/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "Need app access to execute command";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Need to access";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need microphone access for recording";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -517,6 +518,7 @@
 				INFOPLIST_FILE = llmos/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "Need app access to execute command";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Need to access";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need microphone access for recording";
 				LD_RUNPATH_SEARCH_PATHS = (
