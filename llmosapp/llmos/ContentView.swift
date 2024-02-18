@@ -162,24 +162,6 @@ struct ContentView: View {
             Task {
                 await processing(sourceUrl: outputFileURL)
             }
-
-//            helpers.convertCafToM4a(sourceUrl: outputFileURL) { result in
-//                DispatchQueue.main.async {
-//                    switch result {
-//                    case .success(let convertedUrl):
-//                        Task {
-//                            do {
-//                                try await helpers.macPaw(fileUrl: convertedUrl)
-//                                } catch {
-//                                    // Handle the error here
-//                                    print("An error occurred: \(error)")
-//                                }
-//                        }
-//                    case .failure(let error):
-//                        print("Conversion error: \(error.localizedDescription)")
-//                    }
-//                }
-//            }
         }
     
         func processing(sourceUrl: URL) async {
@@ -187,6 +169,8 @@ struct ContentView: View {
                 let convertedUrl = try await helpers.convertCafToM4a(sourceUrl: sourceUrl)
                 let command = try await helpers.voicetotext(fileUrl: convertedUrl)
                 print(command)
+                
+                // DISPLAY THE TEXT COMMAND UNDER THE PULSING BUBBLE IN CONTENTVIEW
                 
                 let code = try await helpers.texttocode(command: command)
                 print("Last thing:")

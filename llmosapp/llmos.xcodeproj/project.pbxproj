@@ -20,6 +20,7 @@
 		B78FA5D72B8080760045D01B /* llmosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FA5D62B8080760045D01B /* llmosTests.swift */; };
 		B78FA5E12B8080760045D01B /* llmosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FA5E02B8080760045D01B /* llmosUITests.swift */; };
 		B78FA5E32B8080760045D01B /* llmosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FA5E22B8080760045D01B /* llmosUITestsLaunchTests.swift */; };
+		B7E920A62B8193A400B13D88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E920A52B8193A400B13D88 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		B78FA5DC2B8080760045D01B /* llmosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = llmosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B78FA5E02B8080760045D01B /* llmosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = llmosUITests.swift; sourceTree = "<group>"; };
 		B78FA5E22B8080760045D01B /* llmosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = llmosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B7E920A52B8193A400B13D88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				B771BE4E2B8135B2006470BA /* helpers.swift */,
 				B771BE502B814282006470BA /* config.plist */,
 				B71130262B8169B2005311C5 /* prompt.swift */,
+				B7E920A52B8193A400B13D88 /* AppDelegate.swift */,
 			);
 			path = llmos;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				B78FA5C72B8080740045D01B /* ContentView.swift in Sources */,
 				B71130272B8169B2005311C5 /* prompt.swift in Sources */,
 				B78FA5C52B8080740045D01B /* llmosApp.swift in Sources */,
+				B7E920A62B8193A400B13D88 /* AppDelegate.swift in Sources */,
 				B771BE4F2B8135B2006470BA /* helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
