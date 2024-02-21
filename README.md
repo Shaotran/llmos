@@ -19,19 +19,19 @@ To get a local copy up and running follow these simple steps.
 
 1. Clone the repo
    ```sh
-   git clone https://[github.com/shaotran/llmos.git]
+   git clone https://github.com/shaotran/llmos.git
    ```
 2. Give LLMOs access to read/write files, open apps, etc. in System Preferences
 3. Build + Run on XCode
 
 ### Testing
 
-“Send a text message to Ray saying What’s up?”
-“Take a screenshot and send it to Robert on Slack”
-“Analyze ~/housing2019.csv and train a simple regression model on it”
+- “Send a text message to Ray saying What’s up?”
+- “Take a screenshot and send it to Robert on Slack”
+- “Analyze ~/housing2019.csv and train a simple regression model on it”
 
 ### Implementation
 
 SwiftUI Frontend. Whisper-1. GPT4. Applescript. OSAScript.
 
-Developed by Ethan Shaotran, Robert Sheng, Allan Zhang, Aarush Aitha.
+_Developed by Ethan Shaotran, Robert Sheng, Allan Zhang, Aarush Aitha._
