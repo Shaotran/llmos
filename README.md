@@ -1,6 +1,6 @@
 # LLMOs
 
-![Header Image](./blob/bun_attempt/llmos.png)
+![Header Image](./llmos.png)
 
 Welcome to the **LLMOs** repository! LLMOs brings the Mac to life by giving it access to GPT4, and allowing it system-level-esque privileges to execute your commands. Summon it with Command-Enter, and watch it write essays on Word, play a song on Spotify, and even train an ML model locally.
 
